@@ -3,7 +3,7 @@
   "displayName": "Inline Diagnostics",
   "description": "Advanced inline diagnostics display with compact bubbles and expanded messages for VS Code",
   "version": "1.0.0",
-  "publisher": "inline-diagnostics",
+  "publisher": "Kabir",
   "engines": {
     "vscode": "^1.80.0"
   },
