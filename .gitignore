@@ -12,3 +12,5 @@ Thumbs.db
 *.iml
 coverage/
 .nyc_output/
+.eslintrc.json
+
