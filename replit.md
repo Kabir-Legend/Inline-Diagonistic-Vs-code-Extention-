@@ -49,11 +49,17 @@ The extension is fully implemented and buildable. The main workflow runs `npm ru
 All settings are under `inlineDiagnostics.*`:
 - `enabled` - Toggle extension on/off
 - `compactMode` - Show compact dots when cursor not on line
-- `backgroundOpacity` - Background opacity for expanded messages
 - `dotCount` - Max dots to show (1-5)
 - `showIcons` - Show severity icons
 - `maxMessageLength` - Max characters in expanded message
 - `updateDebounce` - Debounce time in ms
+
+## Theme Integration
+
+Uses VS Code theme colors for styling:
+- Error/Warning/Info backgrounds use `inputValidation.*Background` tokens
+- Hint uses `editor.hoverHighlightBackground`
+- Text colors use `editor*.foreground` tokens
 
 ## Building
 

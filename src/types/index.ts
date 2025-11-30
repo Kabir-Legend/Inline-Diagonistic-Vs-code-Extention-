@@ -36,7 +36,6 @@ export interface AppliedDecorations {
 export interface ExtensionConfiguration {
     enabled: boolean;
     compactMode: boolean;
-    backgroundOpacity: number;
     dotCount: number;
     showIcons: boolean;
     maxMessageLength: number;

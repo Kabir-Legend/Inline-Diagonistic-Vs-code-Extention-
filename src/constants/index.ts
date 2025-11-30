@@ -24,13 +24,6 @@ export const SEVERITY_STYLES: { [key: number]: SeverityStyle } = {
     }
 };
 
-export const SEVERITY_BACKGROUND_COLORS: { [key: number]: string } = {
-    [vscode.DiagnosticSeverity.Error]: 'editorError.background',
-    [vscode.DiagnosticSeverity.Warning]: 'editorWarning.background',
-    [vscode.DiagnosticSeverity.Information]: 'editorInfo.background',
-    [vscode.DiagnosticSeverity.Hint]: 'editorHint.background'
-};
-
 export const DOT_CHARACTER = '●';
 export const SPACE_CHARACTER = ' ';
 export const SEPARATOR = ' | ';
@@ -38,7 +31,6 @@ export const SEPARATOR = ' | ';
 export const DEFAULT_CONFIG = {
     enabled: true,
     compactMode: true,
-    backgroundOpacity: 0.15,
     dotCount: 3,
     showIcons: true,
     maxMessageLength: 200,

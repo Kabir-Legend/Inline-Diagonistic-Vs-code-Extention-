@@ -20,7 +20,6 @@ export class ConfigurationManager implements vscode.Disposable {
         return {
             enabled: workspaceConfig.get<boolean>('enabled', DEFAULT_CONFIG.enabled),
             compactMode: workspaceConfig.get<boolean>('compactMode', DEFAULT_CONFIG.compactMode),
-            backgroundOpacity: workspaceConfig.get<number>('backgroundOpacity', DEFAULT_CONFIG.backgroundOpacity),
             dotCount: workspaceConfig.get<number>('dotCount', DEFAULT_CONFIG.dotCount),
             showIcons: workspaceConfig.get<boolean>('showIcons', DEFAULT_CONFIG.showIcons),
             maxMessageLength: workspaceConfig.get<number>('maxMessageLength', DEFAULT_CONFIG.maxMessageLength),
@@ -69,10 +68,6 @@ export class ConfigurationManager implements vscode.Disposable {
 
     public isCompactModeEnabled(): boolean {
         return this.config.compactMode;
-    }
-
-    public getBackgroundOpacity(): number {
-        return this.config.backgroundOpacity;
     }
 
     public getMaxDotCount(): number {

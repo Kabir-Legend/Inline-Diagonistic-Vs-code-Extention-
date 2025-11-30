@@ -43,11 +43,20 @@ Access settings via `File > Preferences > Settings` and search for "Inline Diagn
 |---------|---------|-------------|
 | `inlineDiagnostics.enabled` | `true` | Enable/disable the extension |
 | `inlineDiagnostics.compactMode` | `true` | Show compact dot indicators when cursor is not on the diagnostic line |
-| `inlineDiagnostics.backgroundOpacity` | `0.15` | Opacity (0-1) for expanded message background |
 | `inlineDiagnostics.dotCount` | `3` | Maximum number of dots to show based on diagnostic count |
 | `inlineDiagnostics.showIcons` | `true` | Show severity icons in expanded diagnostics |
 | `inlineDiagnostics.maxMessageLength` | `200` | Maximum character length for expanded diagnostic messages |
 | `inlineDiagnostics.updateDebounce` | `100` | Debounce time in milliseconds for decoration updates |
+
+## Theme Integration
+
+The extension uses VS Code's theme colors for all diagnostic styling:
+- **Error**: Uses `editorError.foreground` for text and `inputValidation.errorBackground` for background
+- **Warning**: Uses `editorWarning.foreground` for text and `inputValidation.warningBackground` for background
+- **Information**: Uses `editorInfo.foreground` for text and `inputValidation.infoBackground` for background
+- **Hint**: Uses `editorHint.foreground` for text and `editor.hoverHighlightBackground` for background
+
+For custom background colors, you can override these theme colors in your VS Code settings.
 
 ## Commands
 

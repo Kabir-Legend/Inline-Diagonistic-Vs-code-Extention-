@@ -42,9 +42,6 @@ export class DecorationManager implements vscode.Disposable {
     }
 
     private createDecorationTypeSet(severity: vscode.DiagnosticSeverity): DecorationTypeSet {
-        const style = SEVERITY_STYLES[severity];
-        const opacity = this.configManager.getBackgroundOpacity();
-
         const compactDecorationType = vscode.window.createTextEditorDecorationType({
             after: {
                 margin: DECORATION_MARGIN,
@@ -99,6 +96,21 @@ export class DecorationManager implements vscode.Disposable {
         return types[severity]?.expanded || types[vscode.DiagnosticSeverity.Error].expanded;
     }
 
+    private getBackgroundThemeColor(severity: vscode.DiagnosticSeverity): vscode.ThemeColor {
+        switch (severity) {
+            case vscode.DiagnosticSeverity.Error:
+                return new vscode.ThemeColor('inputValidation.errorBackground');
+            case vscode.DiagnosticSeverity.Warning:
+                return new vscode.ThemeColor('inputValidation.warningBackground');
+            case vscode.DiagnosticSeverity.Information:
+                return new vscode.ThemeColor('inputValidation.infoBackground');
+            case vscode.DiagnosticSeverity.Hint:
+                return new vscode.ThemeColor('editor.hoverHighlightBackground');
+            default:
+                return new vscode.ThemeColor('inputValidation.errorBackground');
+        }
+    }
+
     public createCompactDecorationOptions(
         range: vscode.Range,
         content: string,
@@ -125,7 +137,7 @@ export class DecorationManager implements vscode.Disposable {
         severity: vscode.DiagnosticSeverity
     ): vscode.DecorationOptions {
         const style = SEVERITY_STYLES[severity];
-        const opacity = this.configManager.getBackgroundOpacity();
+        const backgroundColor = this.getBackgroundThemeColor(severity);
         
         return {
             range,
@@ -133,7 +145,7 @@ export class DecorationManager implements vscode.Disposable {
                 after: {
                     contentText: content,
                     color: new vscode.ThemeColor(style.themeColor),
-                    backgroundColor: new vscode.ThemeColor(`${style.themeColor}`),
+                    backgroundColor: backgroundColor,
                     fontStyle: 'normal',
                     fontWeight: 'normal'
                 }
