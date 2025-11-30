@@ -11,6 +11,10 @@ let decorationManager: DecorationManager | undefined;
 let diagnosticManager: DiagnosticManager | undefined;
 let inlineHintsManager: InlineHintsManager | undefined;
 
+
+
+
+
 export function activate(context: vscode.ExtensionContext): void {
     console.log('Inline Diagnostics extension is now active');
 
