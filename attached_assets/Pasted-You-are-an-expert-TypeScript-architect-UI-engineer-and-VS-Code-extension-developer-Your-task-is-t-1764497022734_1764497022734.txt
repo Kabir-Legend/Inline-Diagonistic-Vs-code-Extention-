@@ -1,0 +1,207 @@
+You are an expert TypeScript architect, UI engineer, and VS Code extension developer.
+Your task is to build a full, production-grade Visual Studio Code extension with the following behavior and structure.
+Follow every requirement exactly.
+
+🚀 EXTENSION PURPOSE
+
+Build an advanced Inline Diagnostics extension for VS Code.
+It enhances how diagnostics (errors, warnings, hints, info) are displayed inline in the editor.
+The UX should work exactly like this:
+
+1. When the cursor is NOT on the diagnostic line
+
+Show a compact bubble to the right of the line.
+
+The compact bubble contains:
+
+A colored dot or multi-dot indicator (●).
+
+Optional count.
+
+Must NOT shift text or move layout.
+
+Must NOT flicker.
+
+Decorations must remain stable even while typing.
+
+2. When the cursor IS on the diagnostic line
+
+Expand into a full inline message after the code text.
+
+Show:
+
+Full diagnostic message (wrapped correctly)
+
+Diagnostic severity icon (error/warning/info/hint)
+
+Colors depend on severity
+
+Smooth transition without flashing or replacing decorations too frequently.
+
+3. Decorations must be pixel-perfect
+
+Inline content must align with editor font metrics
+
+No vertical jump, horizontal shift, or jitter
+
+Messages must expand ONLY after the cursor enters the line
+
+Decorations must be updated with throttling/debouncing to prevent lag
+
+📦 FEATURE REQUIREMENTS
+Diagnostics Handling
+
+Listen to vscode.languages.onDidChangeDiagnostics
+
+Listen to active editor changes
+
+Listen to cursor/selection changes
+
+Consolidate diagnostics per line
+
+Track last-applied decorations to avoid redundant updates
+
+Decoration Types
+
+Create two sets of decoration types per severity:
+
+Compact decorations
+
+Right-side bubble aligned with end of line
+
+Dot indicator
+
+Minimal styling
+
+Expanded decorations
+
+Full inline message with background color
+
+Padding/margin controlled by config
+
+Styled using CSS-like properties
+
+Style Requirements
+
+All colors must match VS Code theme tokens via:
+
+themeColor: new vscode.ThemeColor("editorError.foreground")
+
+
+No hardcoded colors.
+
+Use opacity configuration for backgrounds:
+
+backgroundColor: rgba(editorColor, opacity)
+
+⚙️ CONFIGURATION OPTIONS (package.json > contributes.configuration)
+
+Create a configuration section:
+
+inlineDiagnostics.enabled
+
+Enable/disable extension.
+
+inlineDiagnostics.compactMode
+
+Whether compact decorators appear when cursor not on line.
+
+inlineDiagnostics.backgroundOpacity
+
+Opacity (0–1) for expanded message background.
+
+inlineDiagnostics.dotCount
+
+Max dots (e.g., 1–3) based on number of diagnostics.
+
+inlineDiagnostics.showIcons
+
+Enable or disable severity icons.
+
+inlineDiagnostics.maxMessageLength
+
+Limit expanded message characters.
+
+inlineDiagnostics.updateDebounce
+
+Debounce time for updates.
+
+📁 FILE STRUCTURE
+
+Create a directory structure that is easyly understandabe and can be easily changed
+
+🧠 BEHAVIORAL LOGIC
+DiagnosticManager
+
+Fetch diagnostics from VS Code or extentions installed lik ePYTHON OR C/C++
+
+Group by line number
+
+Notify DecorationManager of updates
+
+DecorationManager
+
+Create, reuse, and cache decoration types
+
+Maintain weakmaps of applied decorations
+
+Do NOT recreate decorations unless config changes
+
+Apply both compact and expanded decorations per line
+
+InlineHintsManager
+
+Detect cursor position
+
+Apply expanded version to only that line
+
+Apply compact version to all other diagnostic lines
+
+Avoid double application
+
+DiagnosticAnalyzer
+
+Normalize messages
+
+Merge multiple diagnostics on same line
+
+Generate dot counts and compact messages
+
+Throttle Utility
+
+Use a 50–150ms debounce by default.
+
+📄 REQUIREMENTS FOR THE GENERATED CODE
+
+Use TypeScript
+
+Code must be clean, professional, modular
+
+Absolutely NO flickering or layout shifting
+
+Must run correctly with multiple diagnostics per line
+
+Must support real-time updates
+
+Must handle switching editors & selections
+
+Must strictly follow the described UX behavior
+
+Replace decorations only when needed
+
+Muse show all warnings, errors or suggetions(if possible).
+
+🧩 IMPORTANT UX NOTES
+
+Compact bubble must never push text down.
+
+Decorations must align with default font metrics.
+
+Avoid flashing when cursor moves quickly.
+
+Use after decoration options only—never before or whole-line.
+
+🎯 FINAL INSTRUCTION TO AI
+
+Produce the entire working extension project, following everything above with 100% precision.
+All code must be written completely with no placeholders.
