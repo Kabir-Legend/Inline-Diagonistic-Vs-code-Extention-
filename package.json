@@ -1,0 +1,102 @@
+{
+  "name": "inline-diagnostics",
+  "displayName": "Inline Diagnostics",
+  "description": "Advanced inline diagnostics display with compact bubbles and expanded messages for VS Code",
+  "version": "1.0.0",
+  "publisher": "inline-diagnostics",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "diagnostics",
+    "inline",
+    "errors",
+    "warnings",
+    "linting"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Inline Diagnostics",
+      "properties": {
+        "inlineDiagnostics.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable the inline diagnostics extension"
+        },
+        "inlineDiagnostics.compactMode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show compact dot indicators when cursor is not on the diagnostic line"
+        },
+        "inlineDiagnostics.backgroundOpacity": {
+          "type": "number",
+          "default": 0.15,
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Opacity (0-1) for expanded message background"
+        },
+        "inlineDiagnostics.dotCount": {
+          "type": "number",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 5,
+          "description": "Maximum number of dots to show based on diagnostic count"
+        },
+        "inlineDiagnostics.showIcons": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show severity icons in expanded diagnostics"
+        },
+        "inlineDiagnostics.maxMessageLength": {
+          "type": "number",
+          "default": 200,
+          "minimum": 50,
+          "maximum": 500,
+          "description": "Maximum character length for expanded diagnostic messages"
+        },
+        "inlineDiagnostics.updateDebounce": {
+          "type": "number",
+          "default": 100,
+          "minimum": 50,
+          "maximum": 500,
+          "description": "Debounce time in milliseconds for decoration updates"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "inlineDiagnostics.toggle",
+        "title": "Toggle Inline Diagnostics"
+      },
+      {
+        "command": "inlineDiagnostics.refresh",
+        "title": "Refresh Inline Diagnostics"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --minify",
+    "watch": "esbuild ./src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node --watch",
+    "compile": "tsc -p ./",
+    "lint": "eslint src --ext ts",
+    "test": "node ./dist/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "esbuild": "^0.19.8",
+    "eslint": "^8.55.0",
+    "typescript": "^5.3.2"
+  }
+}
